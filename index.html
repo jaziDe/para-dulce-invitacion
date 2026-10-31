@@ -72,6 +72,7 @@ margin-bottom:10px;
 
 .galeria img{
 width:220px;
+max-width:85%;
 height:auto;
 border-radius:20px;
 border:4px solid white;
@@ -88,6 +89,7 @@ gap:25px;
 
 .cancion img{
 width:180px;
+max-width:85%;
 height:120px;
 object-fit:cover;
 border-radius:20px;
@@ -360,7 +362,7 @@ b) 💕 opción(a)
 
 </div>
 
-<!-- Pantalla cuando elige que no te ama -->
+<!-- Pantalla de "No me amas" y segunda oportunidad -->
 
 <div id="pantallaNoMeAma" class="pantalla oculto">
 
@@ -375,13 +377,13 @@ b) 💕 opción(a)
 Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.
 </h2>
 
-<button onclick="segundaOportunidad()">🚪 Salir</button>
+<button onclick="segundaOportunidad()">
+🚪 Salir
+</button>
 
-</div>
+<!-- Esta sección aparece debajo del mensaje original -->
 
-<!-- Pantalla de la segunda oportunidad -->
-
-<div id="pantallaSegundaOportunidad" class="pantalla oculto">
+<div id="pantallaSegundaOportunidad" class="oculto">
 
 <h1>❤️ Mira como yo te amo mucho mucho ❤️</h1>
 
@@ -400,6 +402,8 @@ Te voy a dar una segunda oportunidad 🥺
 
 </div>
 
+</div>
+
 <script>
 
 let datos = {
@@ -409,7 +413,7 @@ let datos = {
     hora: ""
 };
 
-// Elegir canción
+// Elegir música sin detenerla al cambiar de pantalla
 
 function elegirMusica(tipo) {
 
@@ -436,9 +440,10 @@ function elegirMusica(tipo) {
 
     document.getElementById("pantalla1").classList.add("oculto");
     document.getElementById("pantalla2").classList.remove("oculto");
+
 }
 
-// Enviar la opción elegida a Formspree
+// Notificaciones mediante Formspree
 
 function notificarOpcion(opcion) {
 
@@ -452,17 +457,19 @@ function notificarOpcion(opcion) {
             evento: opcion,
             fechaHora: new Date().toLocaleString("es-HN")
         })
-    }).then(response => {
+    })
+    .then(response => {
         if (!response.ok) {
-            console.error("No se pudo registrar la respuesta.");
+            console.error("No se pudo enviar la notificación.");
         }
-    }).catch(error => {
+    })
+    .catch(error => {
         console.error("Error al enviar la respuesta:", error);
     });
 
 }
 
-// Si elige "Me amas"
+// Si elige que sí te ama
 
 function meAma() {
 
@@ -473,39 +480,38 @@ function meAma() {
 
 }
 
-// Si elige "No me amas"
+// Si elige que no te ama
+// La música sigue sonando
 
 function noMeAma() {
 
     notificarOpcion("No me amas 💔");
-
-    document.getElementById("audioPerdidos").pause();
-    document.getElementById("audioCoqueta").pause();
 
     document.getElementById("pantalla2").classList.add("oculto");
     document.getElementById("pantallaNoMeAma").classList.remove("oculto");
 
 }
 
-// Segunda oportunidad
+// Mostrar la segunda oportunidad
+// Aparece en la misma pantalla
 
 function segundaOportunidad() {
 
-    document.getElementById("pantallaNoMeAma").classList.add("oculto");
     document.getElementById("pantallaSegundaOportunidad").classList.remove("oculto");
 
 }
 
-// Volver a preguntar
+// Volver a la pregunta inicial
 
 function volverAMeAmas() {
 
     document.getElementById("pantallaSegundaOportunidad").classList.add("oculto");
+    document.getElementById("pantallaNoMeAma").classList.add("oculto");
     document.getElementById("pantalla2").classList.remove("oculto");
 
 }
 
-// Continuar las pantallas
+// Navegación entre pantallas
 
 function irSegurita() {
 
@@ -556,7 +562,7 @@ function irLugar() {
 
 }
 
-// Respuesta a la invitación
+// Guardar respuesta a la invitación
 
 function respuesta(opcion) {
 
@@ -571,7 +577,9 @@ function respuesta(opcion) {
 
 function elegirLugar() {
 
-    let seleccionado = document.querySelector('input[name="lugar"]:checked');
+    let seleccionado = document.querySelector(
+        'input[name="lugar"]:checked'
+    );
 
     if (!seleccionado) {
         alert("Selecciona un lugar ❤️");
@@ -597,7 +605,7 @@ function elegirLugar() {
 
 }
 
-// Fecha, hora y envío final
+// Enviar la fecha y la hora
 
 function finalizar() {
 
@@ -624,8 +632,9 @@ function finalizar() {
             "Accept": "application/json"
         },
         body: JSON.stringify(datos)
-    }).catch(error => {
-        console.error("Error al enviar la respuesta:", error);
+    })
+    .catch(error => {
+        console.error("Error al enviar los datos:", error);
     });
 
     document.getElementById("pantalla5").classList.add("oculto");
@@ -640,7 +649,7 @@ function finalizar() {
 
 }
 
-// Corazones flotantes
+// Crear corazones flotantes
 
 function crearCorazon() {
 
