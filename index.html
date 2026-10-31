@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -91,15 +90,16 @@ button:hover {
     box-shadow: 0 0 15px hotpink;
 }
 
-
 .preguntaExtra {
     margin: 12px auto;
     max-width: 520px;
 }
+
 .preguntaExtra label {
     display: block;
     margin: 10px;
 }
+
 .preguntaExtra input {
     display: block;
     margin: 8px auto;
@@ -209,7 +209,6 @@ input[type="text"] {
         max-width: 100%;
     }
 }
-
 </style>
 </head>
 
@@ -270,10 +269,10 @@ input[type="text"] {
         <img src="foto2.jpg" alt="Foto 2">
     </div>
 
-    <button onclick="meAma()">❤️ Me amas</button>
+    <button onclick="meAma()">Si te amo mi niño hermoso:D</button>
 
     <button onclick="noMeAma()">
-        💔 No me amas y solo es una broma pal yutu :c
+        No te amo y solo es una broma pal yutu:c
     </button>
 
 </div>
@@ -418,8 +417,7 @@ input[type="text"] {
         <input type="radio" name="lugar" value="comer" onchange="mostrarPreguntaLugar()" onclick="mostrarPreguntaLugar()">
         🍔 A comer
     </label>
-
-    <div id="preguntaComida" class="preguntaExtra oculto">
+        <div id="preguntaComida" class="preguntaExtra oculto">
         <label for="comida">¿Qué te gustaría comer mi amor?</label>
         <input type="text" id="comida" placeholder="Escribe lo que querés comer">
     </div>
@@ -458,8 +456,6 @@ input[type="text"] {
     <input type="time" id="hora">
 
     <br>
-
-    <!-- ESTE BOTÓN ABRE LA NUEVA PANTALLA -->
 
     <button onclick="finalizar()">Continuar ❤️</button>
 
@@ -508,8 +504,10 @@ input[type="text"] {
 
 </div>
 
-<!-- NUEVA PANTALLA FINAL CON TU MENSAJE Y BOTÓN ENVIAR -->
+<!-- PANTALLA FINAL -->
+
 <div id="pantallaFinal" class="pantalla oculto">
+
     <h1>💖 Mi amor 💖</h1>
 
     <div class="galeria">
@@ -529,6 +527,7 @@ input[type="text"] {
     <button id="botonEnviar" onclick="enviarRespuesta()">
         Enviar respuesta 💌
     </button>
+
 </div>
 
 <script>
@@ -680,27 +679,50 @@ function respuesta(opcion) {
 
 }
 
-// ELEGIR LUGAR
+// MOSTRAR LA PREGUNTA SEGÚN EL LUGAR ELEGIDO
 
 function mostrarPreguntaLugar() {
-    const seleccionado = document.querySelector('input[name="lugar"]:checked');
-    document.getElementById("preguntaPelicula").classList.add("oculto");
-    document.getElementById("preguntaComida").classList.add("oculto");
-    document.getElementById("preguntaOtro").classList.add("oculto");
+
+    const seleccionado = document.querySelector(
+        'input[name="lugar"]:checked'
+    );
+
+    document.getElementById("preguntaPelicula")
+        .classList.add("oculto");
+
+    document.getElementById("preguntaComida")
+        .classList.add("oculto");
+
+    document.getElementById("preguntaOtro")
+        .classList.add("oculto");
 
     if (!seleccionado) return;
 
     if (seleccionado.value === "cine") {
-        document.getElementById("preguntaPelicula").classList.remove("oculto");
+
+        document.getElementById("preguntaPelicula")
+            .classList.remove("oculto");
+
     } else if (seleccionado.value === "comer") {
-        document.getElementById("preguntaComida").classList.remove("oculto");
+
+        document.getElementById("preguntaComida")
+            .classList.remove("oculto");
+
     } else if (seleccionado.value === "otro") {
-        document.getElementById("preguntaOtro").classList.remove("oculto");
+
+        document.getElementById("preguntaOtro")
+            .classList.remove("oculto");
+
     }
 }
 
+// ELEGIR LUGAR
+
 function elegirLugar() {
-    const seleccionado = document.querySelector('input[name="lugar"]:checked');
+
+    const seleccionado = document.querySelector(
+        'input[name="lugar"]:checked'
+    );
 
     if (!seleccionado) {
         alert("Selecciona un lugar ❤️");
@@ -708,44 +730,60 @@ function elegirLugar() {
     }
 
     if (seleccionado.value === "cine") {
-        const pelicula = document.getElementById("pelicula").value.trim();
+
+        const pelicula = document.getElementById("pelicula")
+            .value.trim();
+
         if (!pelicula) {
             alert("Escribe qué película te gustaría ver mi amor ❤️");
             return;
         }
+
         datos.lugar = "Al cine";
         datos.pelicula = pelicula;
         datos.comida = "";
         datos.otroLugar = "";
+
     } else if (seleccionado.value === "comer") {
-        const comida = document.getElementById("comida").value.trim();
+
+        const comida = document.getElementById("comida")
+            .value.trim();
+
         if (!comida) {
             alert("Escribe qué te gustaría comer mi amor ❤️");
             return;
         }
+
         datos.lugar = "A comer";
         datos.comida = comida;
         datos.pelicula = "";
         datos.otroLugar = "";
+
     } else {
-        const otro = document.getElementById("otroLugar").value.trim();
+
+        const otro = document.getElementById("otroLugar")
+            .value.trim();
+
         if (!otro) {
             alert("Especifica bien lo que querés ❤️");
             return;
         }
+
         datos.lugar = "Otro lugar";
         datos.otroLugar = otro;
         datos.pelicula = "";
         datos.comida = "";
+
     }
 
     mostrarPantalla("pantalla5");
+
 }
 
 // BOTÓN CONTINUAR: VALIDAR FECHA Y HORA
-// Y ABRIR LA NUEVA PANTALLA CON EL MENSAJE
 
 function finalizar() {
+
     const fecha = document.getElementById("fecha").value;
     const hora = document.getElementById("hora").value;
 
@@ -763,10 +801,10 @@ function finalizar() {
     datos.hora = hora;
 
     mostrarPantalla("pantallaFinal");
+
 }
 
 // BOTÓN ENVIAR RESPUESTA
-// ENVÍA LOS DATOS DE LA SALIDA A FORMSPREE
 
 function enviarRespuesta() {
 
