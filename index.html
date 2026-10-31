@@ -1,1 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Para Dulce 💖</title>
+
+<style>
+
+body{
+    margin:0;
+    text-align:center;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ff69b4,#ffb6c1);
+    color:white;
+    overflow-x:hidden;
+}
+
+.contenedor{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    font-size:3rem;
+}
+
+button{
+    background:#ff1493;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    margin:10px;
+    animation:latido 1.2s infinite;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+.galeria{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.galeria img{
+    width:220px;
+    border-radius:20px;
+    border:4px solid white;
+    box-shadow:0 0 20px hotpink;
+}
+
+.canciones{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.cancion img{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:20px;
+    border:4px solid white;
+    box-shadow:0 0 25px hotpink;
+}
+
+.oculto{
+    display:none;
+}
+
+.corazon{
+    position:fixed;
+    color:red;
+    font-size:25px;
+    animation:subir 5s linear infinite;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<audio id="audioPerdidos" loop>
+    <source src="Perdidos.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="audioCoqueta" loop>
+    <source src="Coqueta.mp3" type="audio/mpeg">
+</audio>
+
+<div class="contenedor">
+
+<div id="pantallaMusica">
+
+<h1>💖 Para Dulce Emelina Guillen Morales 💖</h1>
+
+<div class="galeria">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+</div>
+
+<h2>🎵 Elige una canción mi amor 🎵</h2>
+
+<div class="canciones">
+
+<div class="cancion">
+    <img src="perdidos.jpg">
+    <br><br>
+    <button onclick="elegirMusica('perdidos')">
+        💖 Perdidos
+    </button>
+</div>
+
+<div class="cancion">
+    <img src="coqueta.jpg">
+    <br><br>
+    <button onclick="elegirMusica('coqueta')">
+        🌹 Coqueta
+    </button>
+</div>
+
+</div>
+
+</div>
+
+<div id="preguntaAmor" class="oculto">
+
+<h1>💕 ¿Me amas? 💕</h1>
+
+<div class="galeria">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+</div>
+
+<button onclick="meAma()">
+❤️ Me amas
+</button>
+
+<button onclick="noMeAma()">
+💔 No me amas y solo es una broma pal yutu :c
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function elegirMusica(tipo){
+
+document.getElementById("pantallaMusica").classList.add("oculto");
+document.getElementById("preguntaAmor").classList.remove("oculto");
+
+if(tipo==="perdidos"){
+    document.getElementById("audioPerdidos").play();
+}
+
+if(tipo==="coqueta"){
+    document.getElementById("audioCoqueta").play();
+}
+
+}
+
+function meAma(){
+
+alert("💖 ¿Enserio???");
+alert("💖 ¿Segurita Segurita????");
+alert("❤️ Está bien mi amorrrrrrr ❤️");
+
+}
+
+function noMeAma(){
+
+document.getElementById("audioPerdidos").pause();
+document.getElementById("audioCoqueta").pause();
+
+document.body.innerHTML=`
+
+<h1 style="margin-top:100px;">
+💔 Lo sabía, no me amas 💔
+</h1>
+
+<h2>
+Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.
+</h2>
+
+<button onclick="window.close()">
+Salir
+</button>
+
+`;
+
+}
+
+function crearCorazon(){
+
+const corazon=document.createElement("div");
+
+corazon.classList.add("corazon");
+
+corazon.innerHTML="❤️";
+
+corazon.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{
+corazon.remove();
+},5000);
+
+}
+
+setInterval(crearCorazon,500);
+
+</script>
+
+</body>
+</html>
 
