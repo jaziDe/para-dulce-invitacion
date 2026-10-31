@@ -345,7 +345,7 @@ b) 💕 opción(a)
 
 <input type="time" id="hora">
 
-<button onclick="finalizar()">Enviar respuesta 💌</button>
+<button onclick="finalizar()">Continuar ❤️</button>
 
 </div>
 
@@ -362,7 +362,7 @@ b) 💕 opción(a)
 
 </div>
 
-<!-- Pantalla de "No me amas" y segunda oportunidad -->
+<!-- Pantalla de No me amas y segunda oportunidad -->
 
 <div id="pantallaNoMeAma" class="pantalla oculto">
 
@@ -377,11 +377,7 @@ b) 💕 opción(a)
 Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.
 </h2>
 
-<button onclick="segundaOportunidad()">
-🚪 Salir
-</button>
-
-<!-- Esta sección aparece debajo del mensaje original -->
+<button onclick="segundaOportunidad()">🚪 Salir</button>
 
 <div id="pantallaSegundaOportunidad" class="oculto">
 
@@ -401,6 +397,27 @@ Te voy a dar una segunda oportunidad 🥺
 </button>
 
 </div>
+</div>
+
+<!-- Pantalla final romántica -->
+
+<div id="pantallaFinal" class="pantalla oculto">
+
+<h1>💖 Te amo muchisisisisisimo mi amor 💖</h1>
+
+<div class="galeria">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
+</div>
+
+<h2>
+Sos lo mejor que me ha pasado, gracias por aceptar esta salida.
+Nos vemosssssssss. ❤️🥹
+</h2>
+
+<h2>
+Espero que te haya gustado esta forma de invitarte a salir amor. 💕
+</h2>
 
 </div>
 
@@ -413,7 +430,7 @@ let datos = {
     hora: ""
 };
 
-// Elegir música sin detenerla al cambiar de pantalla
+// Elegir canción
 
 function elegirMusica(tipo) {
 
@@ -443,7 +460,7 @@ function elegirMusica(tipo) {
 
 }
 
-// Notificaciones mediante Formspree
+// Notificar la opción elegida
 
 function notificarOpcion(opcion) {
 
@@ -481,7 +498,7 @@ function meAma() {
 }
 
 // Si elige que no te ama
-// La música sigue sonando
+// La música continúa sonando
 
 function noMeAma() {
 
@@ -492,8 +509,7 @@ function noMeAma() {
 
 }
 
-// Mostrar la segunda oportunidad
-// Aparece en la misma pantalla
+// Mostrar la segunda oportunidad en la misma pantalla
 
 function segundaOportunidad() {
 
@@ -501,7 +517,7 @@ function segundaOportunidad() {
 
 }
 
-// Volver a la pregunta inicial
+// Volver a la pregunta "¿Me amas?"
 
 function volverAMeAmas() {
 
@@ -562,7 +578,7 @@ function irLugar() {
 
 }
 
-// Guardar respuesta a la invitación
+// Guardar respuesta de la invitación
 
 function respuesta(opcion) {
 
@@ -605,7 +621,7 @@ function elegirLugar() {
 
 }
 
-// Enviar la fecha y la hora
+// Guardar fecha y hora y mostrar la pantalla final
 
 function finalizar() {
 
@@ -625,6 +641,8 @@ function finalizar() {
     datos.fecha = fecha;
     datos.hora = hora;
 
+    // Enviar los datos a Formspree
+
     fetch("https://formspree.io/f/mjyyeppd", {
         method: "POST",
         headers: {
@@ -633,19 +651,20 @@ function finalizar() {
         },
         body: JSON.stringify(datos)
     })
+    .then(response => {
+        if (!response.ok) {
+            console.error("No se pudieron enviar los datos.");
+        }
+    })
     .catch(error => {
         console.error("Error al enviar los datos:", error);
     });
 
-    document.getElementById("pantalla5").classList.add("oculto");
-    document.getElementById("pantalla6").classList.remove("oculto");
+    // Mostrar el mensaje final
 
-    document.getElementById("resultado").innerHTML = `
-        <h3>💖 Respuesta: ${datos.respuesta || "Sin respuesta"}</h3>
-        <h3>💕 Lugar: ${datos.lugar}</h3>
-        <h3>📅 Fecha: ${datos.fecha}</h3>
-        <h3>⏰ Hora: ${datos.hora}</h3>
-    `;
+    document.getElementById("pantalla5").classList.add("oculto");
+    document.getElementById("pantalla6").classList.add("oculto");
+    document.getElementById("pantallaFinal").classList.remove("oculto");
 
 }
 
