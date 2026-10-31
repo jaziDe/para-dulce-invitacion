@@ -417,7 +417,7 @@ lugar:datos.lugar,
 fecha:datos.fecha
 })
 })
-.then(response=>{
+.then(()=>{
 
 document.getElementById("pantalla5").classList.add("oculto");
 document.getElementById("pantalla6").classList.remove("oculto");
@@ -429,7 +429,7 @@ document.getElementById("resultado").innerHTML=`
 `;
 
 })
-.catch(error=>{
+.catch(()=>{
 alert("Error al enviar la respuesta");
 });
 
