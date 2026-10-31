@@ -3,97 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>💖 Para Dulce 💖</title>
 
 <style>
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#ff69b4,#ffb6c1);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff69b4,#ffb6c1);
+color:white;
+text-align:center;
+overflow-x:hidden;
 }
 
 .pantalla{
-    padding:20px;
+padding:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 }
 
 .oculto{
-    display:none;
+display:none;
 }
 
 button{
-    background:#ff1493;
-    color:white;
-    border:none;
-    padding:20px 40px;
-    border-radius:35px;
-    font-size:24px;
-    font-weight:bold;
-    cursor:pointer;
-    margin:15px;
-    box-shadow:0 0 25px hotpink;
-    transition:0.3s;
+background:#ff1493;
+color:white;
+border:none;
+padding:25px 55px;
+border-radius:35px;
+font-size:28px;
+font-weight:bold;
+cursor:pointer;
+margin:15px auto;
+display:block;
+box-shadow:0 0 25px hotpink;
+transition:0.3s;
+animation:latido 1.3s infinite;
 }
 
 button:hover{
-    transform:scale(1.12);
-    box-shadow:0 0 40px white;
+transform:scale(1.12);
+box-shadow:0 0 40px white;
+}
+
+@keyframes latido{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
 }
 
 .galeria{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:30px;
-    margin-bottom:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:30px;
+margin-bottom:20px;
 }
 
 .galeria img{
-    max-width:500px;
-    width:95%;
-    height:auto;
-    border-radius:25px;
-    border:5px solid white;
-    box-shadow:0 0 30px white;
+max-width:500px;
+width:95%;
+height:auto;
+border-radius:25px;
+border:5px solid white;
+box-shadow:0 0 30px white;
 }
 
 .canciones{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:40px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:60px;
 }
 
 .cancion img{
-    max-width:380px;
-    width:95%;
-    height:auto;
-    border-radius:25px;
-    border:5px solid white;
-    box-shadow:0 0 30px hotpink;
+max-width:380px;
+width:95%;
+height:auto;
+border-radius:25px;
+border:5px solid white;
+box-shadow:0 0 30px hotpink;
+}
+
+label{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+font-size:24px;
+margin:15px;
 }
 
 input[type="date"],
 input[type="text"]{
-    padding:15px;
-    border-radius:10px;
-    border:none;
-    width:80%;
-    max-width:500px;
-    margin:10px;
-    font-size:20px;
+padding:15px;
+border-radius:10px;
+border:none;
+width:80%;
+max-width:500px;
+margin:10px;
+font-size:20px;
 }
 
 .corazon{
-    position:fixed;
-    color:red;
-    font-size:25px;
-    animation:subir 5s linear infinite;
+position:fixed;
+color:red;
+font-size:25px;
+animation:subir 5s linear infinite;
 }
 
 @keyframes subir{
@@ -109,7 +130,6 @@ opacity:0;
 
 </style>
 </head>
-
 <body>
 
 <audio id="audioPerdidos" style="display:none;">
@@ -181,9 +201,7 @@ opacity:0;
 <img src="foto2.jpg">
 </div>
 
-<button onclick="irSegurita()">
-❤️ Sí ❤️
-</button>
+<button onclick="irSegurita()">❤️ Sí ❤️</button>
 
 </div>
 
@@ -196,9 +214,7 @@ opacity:0;
 <img src="foto2.jpg">
 </div>
 
-<button onclick="irMiAmor()">
-💕 Sí Mi Amor 💕
-</button>
+<button onclick="irMiAmor()">💕 Sí Mi Amor 💕</button>
 
 </div>
 
@@ -211,9 +227,7 @@ opacity:0;
 <img src="foto2.jpg">
 </div>
 
-<button onclick="irInvitacion()">
-💖 Continuar 💖
-</button>
+<button onclick="irInvitacion()">💖 Continuar 💖</button>
 
 </div>
 
@@ -293,37 +307,13 @@ c) 💔 No
 <img src="foto2.jpg">
 </div>
 
-<label>
-<input type="radio" name="lugar" value="a) Al cine">
-🎬 Al cine
-</label>
+<label><input type="radio" name="lugar" value="a) Al cine"> 🎬 Al cine</label>
+<label><input type="radio" name="lugar" value="b) A comer"> 🍔 A comer</label>
+<label><input type="radio" name="lugar" value="c) Otro lugar"> 🌹 Otro lugar</label>
 
-<br><br>
+<input type="text" id="otroLugar" placeholder="Escribe el lugar">
 
-<label>
-<input type="radio" name="lugar" value="b) A comer">
-🍔 A comer
-</label>
-
-<br><br>
-
-<label>
-<input type="radio" name="lugar" value="c) Otro lugar">
-🌹 Otro lugar
-</label>
-
-<br><br>
-
-<input
-type="text"
-id="otroLugar"
-placeholder="Escribe el lugar">
-
-<br>
-
-<button onclick="elegirLugar()">
-Continuar ❤️
-</button>
+<button onclick="elegirLugar()">Continuar ❤️</button>
 
 </div>
 
@@ -338,11 +328,7 @@ Continuar ❤️
 
 <input type="date" id="fecha">
 
-<br>
-
-<button onclick="finalizar()">
-Enviar respuesta 💌
-</button>
+<button onclick="finalizar()">Enviar respuesta 💌</button>
 
 </div>
 
@@ -383,59 +369,43 @@ document.getElementById("pantalla2").classList.remove("oculto");
 }
 
 function meAma(){
-
 document.getElementById("pantalla2").classList.add("oculto");
 document.getElementById("pantallaEnserio").classList.remove("oculto");
-
 }
 
 function irSegurita(){
-
 document.getElementById("pantallaEnserio").classList.add("oculto");
 document.getElementById("pantallaSegurita").classList.remove("oculto");
-
 }
 
 function irMiAmor(){
-
 document.getElementById("pantallaSegurita").classList.add("oculto");
 document.getElementById("pantallaMiAmor").classList.remove("oculto");
-
 }
 
 function irInvitacion(){
-
 document.getElementById("pantallaMiAmor").classList.add("oculto");
 document.getElementById("pantalla3").classList.remove("oculto");
-
 }
 
 function irNo(){
-
 document.getElementById("pantalla3").classList.add("oculto");
 document.getElementById("pantallaNo").classList.remove("oculto");
-
 }
 
 function irPorqueNoQuiero(){
-
 document.getElementById("pantallaNo").classList.add("oculto");
 document.getElementById("pantallaPorqueNoQuiero").classList.remove("oculto");
-
 }
 
 function irEstaBien(){
-
 document.getElementById("pantallaPorqueNoQuiero").classList.add("oculto");
 document.getElementById("pantallaEstaBien").classList.remove("oculto");
-
 }
 
 function irLugar(){
-
 document.getElementById("pantallaEstaBien").classList.add("oculto");
 document.getElementById("pantalla4").classList.remove("oculto");
-
 }
 
 function noMeAma(){
@@ -444,20 +414,12 @@ document.getElementById("audioPerdidos").pause();
 document.getElementById("audioCoqueta").pause();
 
 document.body.innerHTML=`
-
-<h1 style="margin-top:100px;">
-💔 Lo sabía, no me amas 💔
-</h1>
-
+<h1 style="margin-top:100px;">💔 Lo sabía, no me amas 💔</h1>
 <div class="galeria">
 <img src="foto1.jpg">
 <img src="foto2.jpg">
 </div>
-
-<h2>
-Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.
-</h2>
-
+<h2>Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.</h2>
 `;
 
 }
@@ -473,8 +435,7 @@ document.getElementById("pantalla4").classList.remove("oculto");
 
 function elegirLugar(){
 
-let seleccionado=
-document.querySelector('input[name="lugar"]:checked');
+let seleccionado=document.querySelector('input[name="lugar"]:checked');
 
 if(!seleccionado){
 alert("Selecciona un lugar ❤️");
@@ -484,13 +445,10 @@ return;
 let lugar=seleccionado.value;
 
 if(lugar==="c) Otro lugar"){
-
 let otro=document.getElementById("otroLugar").value;
-
 if(otro!=""){
 lugar="c) "+otro;
 }
-
 }
 
 datos.lugar=lugar;
@@ -534,9 +492,6 @@ document.getElementById("resultado").innerHTML=`
 <h2>📅 Fecha: ${datos.fecha}</h2>
 `;
 
-})
-.catch(()=>{
-alert("Error al enviar la respuesta");
 });
 
 }
@@ -546,9 +501,7 @@ function crearCorazon(){
 let corazon=document.createElement("div");
 
 corazon.classList.add("corazon");
-
 corazon.innerHTML="❤️";
-
 corazon.style.left=Math.random()*100+"vw";
 
 document.body.appendChild(corazon);
