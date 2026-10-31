@@ -29,15 +29,19 @@ button{
     background:#ff1493;
     color:white;
     border:none;
-    padding:15px 25px;
-    border-radius:30px;
-    font-size:18px;
+    padding:20px 40px;
+    border-radius:35px;
+    font-size:24px;
+    font-weight:bold;
     cursor:pointer;
-    margin:10px;
+    margin:15px;
+    box-shadow:0 0 25px hotpink;
+    transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.05);
+    transform:scale(1.12);
+    box-shadow:0 0 40px white;
 }
 
 .galeria{
@@ -48,12 +52,12 @@ button:hover{
 }
 
 .galeria img{
-    width:320px;
-    height:240px;
+    width:420px;
+    height:300px;
     object-fit:cover;
-    border-radius:20px;
-    border:4px solid white;
-    box-shadow:0 0 20px white;
+    border-radius:25px;
+    border:5px solid white;
+    box-shadow:0 0 30px white;
 }
 
 .canciones{
@@ -64,21 +68,23 @@ button:hover{
 }
 
 .cancion img{
-    width:250px;
-    height:250px;
+    width:320px;
+    height:320px;
     object-fit:cover;
-    border-radius:20px;
-    border:4px solid white;
+    border-radius:25px;
+    border:5px solid white;
+    box-shadow:0 0 30px hotpink;
 }
 
 input[type="date"],
 input[type="text"]{
-    padding:10px;
+    padding:15px;
     border-radius:10px;
     border:none;
     width:80%;
-    max-width:400px;
+    max-width:500px;
     margin:10px;
+    font-size:20px;
 }
 
 .corazon{
@@ -144,7 +150,6 @@ opacity:0;
 
 </div>
 
-
 <div id="pantalla2" class="pantalla oculto">
 
 <h1>💕 ¿Me amas? 💕</h1>
@@ -164,10 +169,59 @@ opacity:0;
 
 </div>
 
+<div id="pantallaEnserio" class="pantalla oculto">
+
+<h1>💖 ¿Enserio??? 💖</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irSegurita()">
+❤️ Sí ❤️
+</button>
+
+</div>
+
+<div id="pantallaSegurita" class="pantalla oculto">
+
+<h1>💖 ¿Segurita Segurita???? 💖</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irMiAmor()">
+💕 Sí Mi Amor 💕
+</button>
+
+</div>
+
+<div id="pantallaMiAmor" class="pantalla oculto">
+
+<h1>❤️ Está bien mi amorrrrrrr ❤️</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irInvitacion()">
+💖 Continuar 💖
+</button>
+
+</div>
 
 <div id="pantalla3" class="pantalla oculto">
 
 <h1>💖 ¿Te gustaría salir conmigo? 💖</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
 
 <button onclick="respuesta('a) Sí, claro mi amor')">
 a) 💘 Sí, claro mi amor
@@ -178,11 +232,14 @@ b) 💕 opción(a)
 </button>
 
 </div>
-
-
 <div id="pantalla4" class="pantalla oculto">
 
 <h1>💕 ¿A dónde te gustaría ir? 💕</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
 
 <label>
 <input type="radio" name="lugar" value="a) Al cine">
@@ -218,10 +275,14 @@ Continuar ❤️
 
 </div>
 
-
 <div id="pantalla5" class="pantalla oculto">
 
 <h1>📅 Elige una fecha mi amor 📅</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
 
 <input type="date" id="fecha">
 
@@ -233,62 +294,19 @@ Enviar respuesta 💌
 
 </div>
 
-
 <div id="pantalla6" class="pantalla oculto">
 
 <h1>❤️ Gracias mi amor ❤️</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
 
 <div id="resultado"></div>
 
 </div>
 
-
-    <div id="pantallaEnserio" class="pantalla oculto">
-
-<h1>💖 ¿Enserio??? 💖</h1>
-
-<div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-</div>
-
-<button onclick="irSegurita()">
-❤️ Sí ❤️
-</button>
-
-</div>
-
-
-<div id="pantallaSegurita" class="pantalla oculto">
-
-<h1>💖 ¿Segurita Segurita???? 💖</h1>
-
-<div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-</div>
-
-<button onclick="irMiAmor()">
-💕 Sí Mi Amor 💕
-</button>
-
-</div>
-
-
-<div id="pantallaMiAmor" class="pantalla oculto">
-
-<h1>❤️ Está bien mi amorrrrrrr ❤️</h1>
-
-<div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-</div>
-
-<button onclick="irInvitacion()">
-Continuar 💖
-</button>
-
-</div>
 <script>
 
 let datos={
@@ -318,7 +336,8 @@ document.getElementById("pantalla2").classList.add("oculto");
 document.getElementById("pantallaEnserio").classList.remove("oculto");
 
 }
-    function irSegurita(){
+
+function irSegurita(){
 
 document.getElementById("pantallaEnserio").classList.add("oculto");
 document.getElementById("pantallaSegurita").classList.remove("oculto");
@@ -345,13 +364,20 @@ document.getElementById("audioPerdidos").pause();
 document.getElementById("audioCoqueta").pause();
 
 document.body.innerHTML=`
+
 <h1 style="margin-top:100px;">
 💔 Lo sabía, no me amas 💔
 </h1>
 
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
 <h2>
 Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.
 </h2>
+
 `;
 
 }
@@ -382,7 +408,7 @@ if(lugar==="c) Otro lugar"){
 let otro=document.getElementById("otroLugar").value;
 
 if(otro!=""){
-lugar="c) "+otro;
+lugar="c) " + otro;
 }
 
 }
@@ -423,9 +449,9 @@ document.getElementById("pantalla5").classList.add("oculto");
 document.getElementById("pantalla6").classList.remove("oculto");
 
 document.getElementById("resultado").innerHTML=`
-💖 Respuesta: ${datos.respuesta}<br><br>
-💕 Lugar: ${datos.lugar}<br><br>
-📅 Fecha: ${datos.fecha}
+<h2>💖 Respuesta: ${datos.respuesta}</h2>
+<h2>💕 Lugar: ${datos.lugar}</h2>
+<h2>📅 Fecha: ${datos.fecha}</h2>
 `;
 
 })
