@@ -243,6 +243,52 @@ Enviar respuesta 💌
 </div>
 
 
+    <div id="pantallaEnserio" class="pantalla oculto">
+
+<h1>💖 ¿Enserio??? 💖</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irSegurita()">
+❤️ Sí ❤️
+</button>
+
+</div>
+
+
+<div id="pantallaSegurita" class="pantalla oculto">
+
+<h1>💖 ¿Segurita Segurita???? 💖</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irMiAmor()">
+💕 Sí Mi Amor 💕
+</button>
+
+</div>
+
+
+<div id="pantallaMiAmor" class="pantalla oculto">
+
+<h1>❤️ Está bien mi amorrrrrrr ❤️</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irInvitacion()">
+Continuar 💖
+</button>
+
+</div>
 <script>
 
 let datos={
@@ -268,11 +314,27 @@ document.getElementById("pantalla2").classList.remove("oculto");
 
 function meAma(){
 
-alert("💖 ¿Enserio???");
-alert("💖 ¿Segurita Segurita????");
-alert("❤️ Está bien mi amorrrrrrr ❤️");
-
 document.getElementById("pantalla2").classList.add("oculto");
+document.getElementById("pantallaEnserio").classList.remove("oculto");
+
+}
+    function irSegurita(){
+
+document.getElementById("pantallaEnserio").classList.add("oculto");
+document.getElementById("pantallaSegurita").classList.remove("oculto");
+
+}
+
+function irMiAmor(){
+
+document.getElementById("pantallaSegurita").classList.add("oculto");
+document.getElementById("pantallaMiAmor").classList.remove("oculto");
+
+}
+
+function irInvitacion(){
+
+document.getElementById("pantallaMiAmor").classList.add("oculto");
 document.getElementById("pantalla3").classList.remove("oculto");
 
 }
@@ -346,14 +408,16 @@ datos.fecha=fecha;
 fetch("https://formspree.io/f/mjyyeppd",{
 method:"POST",
 headers:{
-"Content-Type":"application/json"
+"Content-Type":"application/json",
+"Accept":"application/json"
 },
 body:JSON.stringify({
 respuesta:datos.respuesta,
 lugar:datos.lugar,
 fecha:datos.fecha
 })
-});
+})
+.then(response=>{
 
 document.getElementById("pantalla5").classList.add("oculto");
 document.getElementById("pantalla6").classList.remove("oculto");
@@ -363,6 +427,11 @@ document.getElementById("resultado").innerHTML=`
 💕 Lugar: ${datos.lugar}<br><br>
 📅 Fecha: ${datos.fecha}
 `;
+
+})
+.catch(error=>{
+alert("Error al enviar la respuesta");
+});
 
 }
 
