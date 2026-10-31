@@ -52,9 +52,8 @@ button:hover{
 }
 
 .galeria img{
-    width:420px;
-    height:300px;
-    object-fit:cover;
+    width:min(420px,90%);
+    height:auto;
     border-radius:25px;
     border:5px solid white;
     box-shadow:0 0 30px white;
@@ -68,9 +67,8 @@ button:hover{
 }
 
 .cancion img{
-    width:320px;
-    height:320px;
-    object-fit:cover;
+    width:min(320px,90%);
+    height:auto;
     border-radius:25px;
     border:5px solid white;
     box-shadow:0 0 30px hotpink;
@@ -107,6 +105,7 @@ opacity:0;
 
 </style>
 </head>
+
 <body>
 
 <audio id="audioPerdidos" style="display:none;">
@@ -231,7 +230,56 @@ a) 💘 Sí, claro mi amor
 b) 💕 opción(a)
 </button>
 
+<button onclick="irNo()">
+c) 💔 No
+</button>
+
 </div>
+<div id="pantallaNo" class="pantalla oculto">
+
+<h1>💔 ¿Por qué no mi amor? 💔</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irPorqueNoQuiero()">
+🥺 Porque no quiero
+</button>
+
+</div>
+
+<div id="pantallaPorqueNoQuiero" class="pantalla oculto">
+
+<h1>🥺 Vayaaaa porfisssss 🥺</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irEstaBien()">
+❤️ Bueno...
+</button>
+
+</div>
+
+<div id="pantallaEstaBien" class="pantalla oculto">
+
+<h1>❤️ Está bien mi amor ❤️</h1>
+
+<div class="galeria">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+</div>
+
+<button onclick="irLugar()">
+💖 Continuar 💖
+</button>
+
+</div>
+
 <div id="pantalla4" class="pantalla oculto">
 
 <h1>💕 ¿A dónde te gustaría ir? 💕</h1>
@@ -260,7 +308,7 @@ b) 💕 opción(a)
 🌹 Otro lugar
 </label>
 
-<br>
+<br><br>
 
 <input
 type="text"
@@ -358,6 +406,34 @@ document.getElementById("pantalla3").classList.remove("oculto");
 
 }
 
+function irNo(){
+
+document.getElementById("pantalla3").classList.add("oculto");
+document.getElementById("pantallaNo").classList.remove("oculto");
+
+}
+
+function irPorqueNoQuiero(){
+
+document.getElementById("pantallaNo").classList.add("oculto");
+document.getElementById("pantallaPorqueNoQuiero").classList.remove("oculto");
+
+}
+
+function irEstaBien(){
+
+document.getElementById("pantallaPorqueNoQuiero").classList.add("oculto");
+document.getElementById("pantallaEstaBien").classList.remove("oculto");
+
+}
+
+function irLugar(){
+
+document.getElementById("pantallaEstaBien").classList.add("oculto");
+document.getElementById("pantalla4").classList.remove("oculto");
+
+}
+
 function noMeAma(){
 
 document.getElementById("audioPerdidos").pause();
@@ -408,7 +484,7 @@ if(lugar==="c) Otro lugar"){
 let otro=document.getElementById("otroLugar").value;
 
 if(otro!=""){
-lugar="c) " + otro;
+lugar="c) "+otro;
 }
 
 }
