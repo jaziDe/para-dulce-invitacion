@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Probar audio</title>
+  <style>
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      background: linear-gradient(135deg, #ff7eb3, #ffb3cf);
+      font-family: Arial, sans-serif; color: white; text-align: center;
+      padding: 20px; box-sizing: border-box;
+    }
+    main {
+      width: min(560px, 100%); background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.4); border-radius: 22px;
+      padding: 28px 20px; box-sizing: border-box;
+    }
+    h1 { font-size: clamp(1.4rem, 4vw, 2rem); }
+    p { line-height: 1.5; }
+    input { display: block; max-width: 100%; margin: 20px auto; color: white; }
+    audio { width: 100%; margin-top: 16px; }
+    #status { font-weight: bold; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🎵 Probemos tu audio 🎵</h1>
+    <p>Seleccioná el archivo <strong>audio dulce.m4a</strong> desde tu computadora.</p>
+    <input id="file" type="file" accept="audio/*,.m4a,.mp3,.wav,.aac,.ogg">
+    <p id="status">Todavía no seleccionaste un audio.</p>
+    <audio id="player" controls preload="metadata" hidden></audio>
+    <p>Si aparece una duración y podés darle a reproducir, está funcionando.</p>
+  </main>
+  <script>
+    const picker = document.getElementById('file');
+    const player = document.getElementById('player');
+    const status = document.getElementById('status');
+    let currentUrl = null;
+
+    picker.addEventListener('change', () => {
+      const file = picker.files && picker.files[0];
+      if (!file) return;
+      if (currentUrl) URL.revokeObjectURL(currentUrl);
+      currentUrl = URL.createObjectURL(file);
+      player.src = currentUrl;
+      player.hidden = false;
+      status.textContent = 'Archivo seleccionado: ' + file.name + ' (' + Math.round(file.size / 1024) + ' KB).';
+      player.load();
+    });
+
+    player.addEventListener('loadedmetadata', () => {
+      const duration = Number.isFinite(player.duration) ? Math.round(player.duration) : null;
+      status.textContent = duration === null
+        ? 'El archivo se abrió, pero no se pudo leer la duración.'
+        : 'Audio cargado correctamente. Duración: ' + Math.floor(duration / 60) + ':' + String(duration % 60).padStart(2, '0') + '.';
+    });
+
+    player.addEventListener('error', () => {
+      status.textContent = 'No se pudo reproducir este archivo en el navegador. Puede estar dañado o usar un códec no compatible.';
+    });
+  </script>
+</body>
+</html>
