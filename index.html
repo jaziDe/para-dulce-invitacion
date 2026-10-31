@@ -22,7 +22,7 @@ body {
 }
 
 .oculto {
-    display: none;
+    display: none !important;
 }
 
 h1 {
@@ -48,18 +48,11 @@ button {
     margin: 8px;
     box-shadow: 0 0 15px hotpink;
     transition: 0.3s;
-    animation: latido 1.3s infinite;
 }
 
 button:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
     box-shadow: 0 0 25px white;
-}
-
-@keyframes latido {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-    100% { transform: scale(1); }
 }
 
 .galeria {
@@ -68,7 +61,7 @@ button:hover {
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 
 .galeria img {
@@ -122,9 +115,9 @@ input[type="text"] {
 
 .corazon {
     position: fixed;
-    color: red;
+    color: #ff1493;
     font-size: 25px;
-    animation: subir 5s linear infinite;
+    animation: subir 5s linear forwards;
     pointer-events: none;
     z-index: 10;
 }
@@ -144,6 +137,8 @@ input[type="text"] {
 
 <body>
 
+<!-- MÚSICA -->
+
 <audio id="audioPerdidos" loop>
     <source src="Perdidos.mp3" type="audio/mpeg">
 </audio>
@@ -152,7 +147,7 @@ input[type="text"] {
     <source src="Coqueta.mp3" type="audio/mpeg">
 </audio>
 
-<!-- PANTALLA 1: MÚSICA -->
+<!-- PANTALLA 1: ELEGIR CANCIÓN -->
 
 <div id="pantalla1" class="pantalla">
 
@@ -377,7 +372,7 @@ input[type="text"] {
 
     <br>
 
-    <!-- ESTE BOTÓN AHORA DICE CONTINUAR -->
+    <!-- ESTE BOTÓN ABRE LA NUEVA PANTALLA -->
 
     <button onclick="finalizar()">Continuar ❤️</button>
 
@@ -386,16 +381,8 @@ input[type="text"] {
 <!-- PANTALLA ANTIGUA DE RESULTADOS -->
 
 <div id="pantalla6" class="pantalla oculto">
-
     <h1>❤️ Gracias mi amor ❤️</h1>
-
-    <div class="galeria">
-        <img src="foto1.jpg" alt="Foto 1">
-        <img src="foto2.jpg" alt="Foto 2">
-    </div>
-
     <div id="resultado"></div>
-
 </div>
 
 <!-- PANTALLA: NO ME AMAS -->
@@ -414,8 +401,6 @@ input[type="text"] {
     </h2>
 
     <button onclick="segundaOportunidad()">🚪 Salir</button>
-
-    <!-- SEGUNDA OPORTUNIDAD EN LA MISMA PANTALLA -->
 
     <div id="pantallaSegundaOportunidad" class="oculto">
 
@@ -436,7 +421,7 @@ input[type="text"] {
 
 </div>
 
-<!-- NUEVA PANTALLA FINAL -->
+<!-- NUEVA PANTALLA FINAL CON TU MENSAJE Y BOTÓN ENVIAR -->
 
 <div id="pantallaFinal" class="pantalla oculto">
 
@@ -453,8 +438,12 @@ input[type="text"] {
     </h2>
 
     <h2>
-        Espero que te haya gustado esta forma de invitarte a salir amor ❤️
+        Espero que te haya gustado esta forma de invitarte a salir amor
     </h2>
+
+    <button id="botonEnviar" onclick="enviarRespuesta()">
+        Enviar respuesta 💌
+    </button>
 
 </div>
 
@@ -482,24 +471,33 @@ function elegirMusica(tipo) {
     audioPerdidos.currentTime = 0;
     audioCoqueta.currentTime = 0;
 
-    let audioSeleccionado;
-
-    if (tipo === "perdidos") {
-        audioSeleccionado = audioPerdidos;
-    } else {
-        audioSeleccionado = audioCoqueta;
-    }
+    const audioSeleccionado =
+        tipo === "perdidos" ? audioPerdidos : audioCoqueta;
 
     audioSeleccionado.play().catch(error => {
-        console.log("No se pudo reproducir el audio:", error);
+        console.log("No se pudo reproducir la música:", error);
     });
 
-    document.getElementById("pantalla1").classList.add("oculto");
-    document.getElementById("pantalla2").classList.remove("oculto");
-
+    mostrarPantalla("pantalla2");
 }
 
-// NOTIFICAR LA RESPUESTA
+// MOSTRAR UNA PANTALLA Y OCULTAR LAS DEMÁS
+
+function mostrarPantalla(id) {
+
+    document.querySelectorAll(".pantalla").forEach(pantalla => {
+        pantalla.classList.add("oculto");
+    });
+
+    document.getElementById(id).classList.remove("oculto");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+// NOTIFICAR LA RESPUESTA A LA PREGUNTA ¿ME AMAS?
 
 function notificarOpcion(opcion) {
 
@@ -514,9 +512,8 @@ function notificarOpcion(opcion) {
             fechaHora: new Date().toLocaleString("es-HN")
         })
     }).catch(error => {
-        console.error("Error al enviar la respuesta:", error);
+        console.error("Error al enviar la notificación:", error);
     });
-
 }
 
 // SI DICE QUE SÍ TE AMA
@@ -524,9 +521,7 @@ function notificarOpcion(opcion) {
 function meAma() {
 
     notificarOpcion("Me amas ❤️");
-
-    document.getElementById("pantalla2").classList.add("oculto");
-    document.getElementById("pantallaEnserio").classList.remove("oculto");
+    mostrarPantalla("pantallaEnserio");
 
 }
 
@@ -535,17 +530,16 @@ function meAma() {
 function noMeAma() {
 
     notificarOpcion("No me amas 💔");
-
-    document.getElementById("pantalla2").classList.add("oculto");
-    document.getElementById("pantallaNoMeAma").classList.remove("oculto");
+    mostrarPantalla("pantallaNoMeAma");
 
 }
 
-// MOSTRAR LA SEGUNDA OPORTUNIDAD
+// SEGUNDA OPORTUNIDAD
 
 function segundaOportunidad() {
 
-    document.getElementById("pantallaSegundaOportunidad").classList.remove("oculto");
+    document.getElementById("pantallaSegundaOportunidad")
+        .classList.remove("oculto");
 
 }
 
@@ -553,71 +547,49 @@ function segundaOportunidad() {
 
 function volverAMeAmas() {
 
-    document.getElementById("pantallaSegundaOportunidad").classList.add("oculto");
-    document.getElementById("pantallaNoMeAma").classList.add("oculto");
-    document.getElementById("pantalla2").classList.remove("oculto");
+    document.getElementById("pantallaSegundaOportunidad")
+        .classList.add("oculto");
+
+    mostrarPantalla("pantalla2");
 
 }
 
 // NAVEGACIÓN ENTRE PANTALLAS
 
 function irSegurita() {
-
-    document.getElementById("pantallaEnserio").classList.add("oculto");
-    document.getElementById("pantallaSegurita").classList.remove("oculto");
-
+    mostrarPantalla("pantallaSegurita");
 }
 
 function irMiAmor() {
-
-    document.getElementById("pantallaSegurita").classList.add("oculto");
-    document.getElementById("pantallaMiAmor").classList.remove("oculto");
-
+    mostrarPantalla("pantallaMiAmor");
 }
 
 function irInvitacion() {
-
-    document.getElementById("pantallaMiAmor").classList.add("oculto");
-    document.getElementById("pantalla3").classList.remove("oculto");
-
+    mostrarPantalla("pantalla3");
 }
 
 function irNo() {
-
-    document.getElementById("pantalla3").classList.add("oculto");
-    document.getElementById("pantallaNo").classList.remove("oculto");
-
+    mostrarPantalla("pantallaNo");
 }
 
 function irPorqueNoQuiero() {
-
-    document.getElementById("pantallaNo").classList.add("oculto");
-    document.getElementById("pantallaPorqueNoQuiero").classList.remove("oculto");
-
+    mostrarPantalla("pantallaPorqueNoQuiero");
 }
 
 function irEstaBien() {
-
-    document.getElementById("pantallaPorqueNoQuiero").classList.add("oculto");
-    document.getElementById("pantallaEstaBien").classList.remove("oculto");
-
+    mostrarPantalla("pantallaEstaBien");
 }
 
 function irLugar() {
-
-    document.getElementById("pantallaEstaBien").classList.add("oculto");
-    document.getElementById("pantalla4").classList.remove("oculto");
-
+    mostrarPantalla("pantalla4");
 }
 
-// GUARDAR RESPUESTA Y CONTINUAR
+// GUARDAR RESPUESTA A LA INVITACIÓN
 
 function respuesta(opcion) {
 
     datos.respuesta = opcion;
-
-    document.getElementById("pantalla3").classList.add("oculto");
-    document.getElementById("pantalla4").classList.remove("oculto");
+    mostrarPantalla("pantalla4");
 
 }
 
@@ -625,7 +597,7 @@ function respuesta(opcion) {
 
 function elegirLugar() {
 
-    let seleccionado = document.querySelector(
+    const seleccionado = document.querySelector(
         'input[name="lugar"]:checked'
     );
 
@@ -638,7 +610,8 @@ function elegirLugar() {
 
     if (lugar === "c) Otro lugar") {
 
-        let otro = document.getElementById("otroLugar").value.trim();
+        const otro = document.getElementById("otroLugar")
+            .value.trim();
 
         if (otro !== "") {
             lugar = "c) " + otro;
@@ -648,24 +621,24 @@ function elegirLugar() {
 
     datos.lugar = lugar;
 
-    document.getElementById("pantalla4").classList.add("oculto");
-    document.getElementById("pantalla5").classList.remove("oculto");
+    mostrarPantalla("pantalla5");
 
 }
 
-// FINALIZAR Y MOSTRAR LA NUEVA PANTALLA
+// BOTÓN CONTINUAR: VALIDAR FECHA Y HORA
+// Y ABRIR LA NUEVA PANTALLA CON EL MENSAJE
 
 function finalizar() {
 
-    let fecha = document.getElementById("fecha").value;
-    let hora = document.getElementById("hora").value;
+    const fecha = document.getElementById("fecha").value;
+    const hora = document.getElementById("hora").value;
 
-    if (fecha === "") {
+    if (!fecha) {
         alert("Selecciona una fecha ❤️");
         return;
     }
 
-    if (hora === "") {
+    if (!hora) {
         alert("Selecciona una hora ❤️");
         return;
     }
@@ -673,7 +646,21 @@ function finalizar() {
     datos.fecha = fecha;
     datos.hora = hora;
 
-    // Enviar los datos de la salida a Formspree
+    // Mostrar la pantalla nueva con el mensaje y el botón Enviar
+
+    mostrarPantalla("pantallaFinal");
+
+}
+
+// BOTÓN ENVIAR RESPUESTA
+// ENVÍA LOS DATOS DE LA SALIDA A FORMSPREE
+
+function enviarRespuesta() {
+
+    const boton = document.getElementById("botonEnviar");
+
+    boton.disabled = true;
+    boton.textContent = "Enviando... 💌";
 
     fetch("https://formspree.io/f/mjyyeppd", {
         method: "POST",
@@ -682,21 +669,28 @@ function finalizar() {
             "Accept": "application/json"
         },
         body: JSON.stringify(datos)
-    }).catch(error => {
+    })
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("No se pudo enviar la respuesta.");
+        }
+
+        boton.textContent = "¡Respuesta enviada! ❤️";
+
+        alert("¡Tu respuesta se envió correctamente, mi amor! ❤️");
+
+    })
+    .catch(error => {
+
         console.error("Error al enviar los datos:", error);
+
+        alert("No se pudo enviar la respuesta. Revisa tu conexión e inténtalo de nuevo.");
+
+        boton.disabled = false;
+        boton.textContent = "Enviar respuesta 💌";
+
     });
-
-    // OCULTAR LA PANTALLA DE FECHA Y HORA
-
-    document.getElementById("pantalla5").classList.add("oculto");
-
-    // OCULTAR LA PANTALLA ANTIGUA DE RESULTADOS
-
-    document.getElementById("pantalla6").classList.add("oculto");
-
-    // MOSTRAR LA NUEVA PANTALLA FINAL
-
-    document.getElementById("pantallaFinal").classList.remove("oculto");
 
 }
 
@@ -704,10 +698,10 @@ function finalizar() {
 
 function crearCorazon() {
 
-    let corazon = document.createElement("div");
+    const corazon = document.createElement("div");
 
     corazon.classList.add("corazon");
-    corazon.innerHTML = "❤️";
+    corazon.textContent = "❤️";
     corazon.style.left = Math.random() * 100 + "vw";
 
     document.body.appendChild(corazon);
@@ -718,7 +712,7 @@ function crearCorazon() {
 
 }
 
-setInterval(crearCorazon, 500);
+setInterval(crearCorazon, 700);
 
 </script>
 
