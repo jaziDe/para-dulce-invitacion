@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +7,6 @@
 <title>💖 Para Dulce 💖</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial,sans-serif;
@@ -111,8 +111,10 @@ padding:10px;
 border-radius:10px;
 border:none;
 width:280px;
+max-width:85%;
 margin:8px;
 font-size:16px;
+box-sizing:border-box;
 }
 
 .corazon{
@@ -120,6 +122,7 @@ position:fixed;
 color:red;
 font-size:25px;
 animation:subir 5s linear infinite;
+pointer-events:none;
 }
 
 @keyframes subir{
@@ -132,9 +135,9 @@ transform:translateY(-100px);
 opacity:0;
 }
 }
-
 </style>
 </head>
+
 <body>
 
 <audio id="audioPerdidos" style="display:none;">
@@ -150,8 +153,8 @@ opacity:0;
 <h1>💖 Para Dulce Emelina Guillen Morales 💖</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <h2>🎵 Elige una canción mi amor 🎵</h2>
@@ -159,7 +162,7 @@ opacity:0;
 <div class="canciones">
 
 <div class="cancion">
-<img src="perdidos.jpg">
+<img src="perdidos.jpg" alt="Perdidos">
 <br><br>
 <button onclick="elegirMusica('perdidos')">
 💖 Perdidos
@@ -167,7 +170,7 @@ opacity:0;
 </div>
 
 <div class="cancion">
-<img src="coqueta.jpg">
+<img src="coqueta.jpg" alt="Coqueta">
 <br><br>
 <button onclick="elegirMusica('coqueta')">
 🌹 Coqueta
@@ -175,7 +178,6 @@ opacity:0;
 </div>
 
 </div>
-
 </div>
 
 <div id="pantalla2" class="pantalla oculto">
@@ -183,8 +185,8 @@ opacity:0;
 <h1>💕 ¿Me amas? 💕</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <button onclick="meAma()">❤️ Me amas</button>
@@ -200,8 +202,8 @@ opacity:0;
 <h1>💖 ¿Enserio??? 💖</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <button onclick="irSegurita()">❤️ Sí ❤️</button>
@@ -213,8 +215,8 @@ opacity:0;
 <h1>💖 ¿Segurita Segurita???? 💖</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <button onclick="irMiAmor()">💕 Sí Mi Amor 💕</button>
@@ -226,8 +228,8 @@ opacity:0;
 <h1>❤️ Está bien mi amorrrrrrr ❤️</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <button onclick="irInvitacion()">💖 Continuar 💖</button>
@@ -239,8 +241,8 @@ opacity:0;
 <h1>💖 ¿Te gustaría salir conmigo? 💖</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <button onclick="respuesta('a) Sí, claro mi amor')">
@@ -251,18 +253,17 @@ a) 💘 Sí, claro mi amor
 b) 💕 opción(a)
 </button>
 
-<button onclick="irNo()">
-c) 💔 No
-</button>
+<button onclick="irNo()">c) 💔 No</button>
 
 </div>
+
 <div id="pantallaNo" class="pantalla oculto">
 
 <h1>💔 ¿Por qué no mi amor? 💔</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <button onclick="irPorqueNoQuiero()">
@@ -276,13 +277,11 @@ c) 💔 No
 <h1>🥺 Vayaaaa porfisssss 🥺</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
-<button onclick="irEstaBien()">
-❤️ Bueno...
-</button>
+<button onclick="irEstaBien()">❤️ Bueno...</button>
 
 </div>
 
@@ -291,13 +290,11 @@ c) 💔 No
 <h1>❤️ Está bien mi amor ❤️</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
-<button onclick="irLugar()">
-💖 Continuar 💖
-</button>
+<button onclick="irLugar()">💖 Continuar 💖</button>
 
 </div>
 
@@ -306,15 +303,24 @@ c) 💔 No
 <h1>💕 ¿A dónde te gustaría ir? 💕</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
-<label><input type="radio" name="lugar" value="a) Al cine"> 🎬 Al cine</label>
+<label>
+<input type="radio" name="lugar" value="a) Al cine">
+🎬 Al cine
+</label>
 
-<label><input type="radio" name="lugar" value="b) A comer"> 🍔 A comer</label>
+<label>
+<input type="radio" name="lugar" value="b) A comer">
+🍔 A comer
+</label>
 
-<label><input type="radio" name="lugar" value="c) Otro lugar"> 🌹 Otro lugar</label>
+<label>
+<input type="radio" name="lugar" value="c) Otro lugar">
+🌹 Otro lugar
+</label>
 
 <input type="text" id="otroLugar" placeholder="Escribe el lugar">
 
@@ -327,8 +333,8 @@ c) 💔 No
 <h1>📅 ¿Qué día te gustaría salir? 📅</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <input type="date" id="fecha">
@@ -346,172 +352,313 @@ c) 💔 No
 <h1>❤️ Gracias mi amor ❤️</h1>
 
 <div class="galeria">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
 </div>
 
 <div id="resultado"></div>
 
 </div>
 
+<!-- Pantalla cuando elige que no te ama -->
+
+<div id="pantallaNoMeAma" class="pantalla oculto">
+
+<h1>💔 Lo sabía, no me amas 💔</h1>
+
+<div class="galeria">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
+</div>
+
+<h2>
+Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.
+</h2>
+
+<button onclick="segundaOportunidad()">🚪 Salir</button>
+
+</div>
+
+<!-- Pantalla de la segunda oportunidad -->
+
+<div id="pantallaSegundaOportunidad" class="pantalla oculto">
+
+<h1>❤️ Mira como yo te amo mucho mucho ❤️</h1>
+
+<h2>
+Te voy a dar una segunda oportunidad 🥺
+</h2>
+
+<div class="galeria">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
+</div>
+
+<button onclick="volverAMeAmas()">
+❤️ Está bien mi amor, perdón ❤️
+</button>
+
+</div>
+
 <script>
 
-let datos={
-respuesta:"",
-lugar:"",
-fecha:"",
-hora:""
+let datos = {
+    respuesta: "",
+    lugar: "",
+    fecha: "",
+    hora: ""
 };
 
-function elegirMusica(tipo){
-if(tipo==="perdidos"){
-document.getElementById("audioPerdidos").play();
-}
-if(tipo==="coqueta"){
-document.getElementById("audioCoqueta").play();
-}
-document.getElementById("pantalla1").classList.add("oculto");
-document.getElementById("pantalla2").classList.remove("oculto");
-}
+// Elegir canción
 
-function meAma(){
-document.getElementById("pantalla2").classList.add("oculto");
-document.getElementById("pantallaEnserio").classList.remove("oculto");
-}
+function elegirMusica(tipo) {
 
-function irSegurita(){
-document.getElementById("pantallaEnserio").classList.add("oculto");
-document.getElementById("pantallaSegurita").classList.remove("oculto");
-}
+    const audioPerdidos = document.getElementById("audioPerdidos");
+    const audioCoqueta = document.getElementById("audioCoqueta");
 
-function irMiAmor(){
-document.getElementById("pantallaSegurita").classList.add("oculto");
-document.getElementById("pantallaMiAmor").classList.remove("oculto");
-}
+    audioPerdidos.pause();
+    audioCoqueta.pause();
 
-function irInvitacion(){
-document.getElementById("pantallaMiAmor").classList.add("oculto");
-document.getElementById("pantalla3").classList.remove("oculto");
+    audioPerdidos.currentTime = 0;
+    audioCoqueta.currentTime = 0;
+
+    let audioSeleccionado;
+
+    if (tipo === "perdidos") {
+        audioSeleccionado = audioPerdidos;
+    } else {
+        audioSeleccionado = audioCoqueta;
+    }
+
+    audioSeleccionado.play().catch(error => {
+        console.log("No se pudo reproducir el audio:", error);
+    });
+
+    document.getElementById("pantalla1").classList.add("oculto");
+    document.getElementById("pantalla2").classList.remove("oculto");
 }
 
-function irNo(){
-document.getElementById("pantalla3").classList.add("oculto");
-document.getElementById("pantallaNo").classList.remove("oculto");
-}
+// Enviar la opción elegida a Formspree
 
-function irPorqueNoQuiero(){
-document.getElementById("pantallaNo").classList.add("oculto");
-document.getElementById("pantallaPorqueNoQuiero").classList.remove("oculto");
-}
+function notificarOpcion(opcion) {
 
-function irEstaBien(){
-document.getElementById("pantallaPorqueNoQuiero").classList.add("oculto");
-document.getElementById("pantallaEstaBien").classList.remove("oculto");
-}
-
-function irLugar(){
-document.getElementById("pantallaEstaBien").classList.add("oculto");
-document.getElementById("pantalla4").classList.remove("oculto");
-}
-
-function noMeAma(){
-
-document.getElementById("audioPerdidos").pause();
-document.getElementById("audioCoqueta").pause();
-
-document.body.innerHTML=`
-<h1>💔 Lo sabía, no me amas 💔</h1>
-<h2>Está bien, como no me amas ya no vas a poder ver nada de lo que seguía.</h2>
-`;
+    fetch("https://formspree.io/f/mjyyeppd", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            evento: opcion,
+            fechaHora: new Date().toLocaleString("es-HN")
+        })
+    }).then(response => {
+        if (!response.ok) {
+            console.error("No se pudo registrar la respuesta.");
+        }
+    }).catch(error => {
+        console.error("Error al enviar la respuesta:", error);
+    });
 
 }
 
-function respuesta(opcion){
-datos.respuesta=opcion;
-document.getElementById("pantalla3").classList.add("oculto");
-document.getElementById("pantalla4").classList.remove("oculto");
-}
+// Si elige "Me amas"
 
-function elegirLugar(){
+function meAma() {
 
-let seleccionado=document.querySelector('input[name="lugar"]:checked');
+    notificarOpcion("Me amas ❤️");
 
-if(!seleccionado){
-alert("Selecciona un lugar ❤️");
-return;
-}
-
-let lugar=seleccionado.value;
-
-if(lugar==="c) Otro lugar"){
-let otro=document.getElementById("otroLugar").value;
-if(otro!=""){
-lugar="c) "+otro;
-}
-}
-
-datos.lugar=lugar;
-
-document.getElementById("pantalla4").classList.add("oculto");
-document.getElementById("pantalla5").classList.remove("oculto");
+    document.getElementById("pantalla2").classList.add("oculto");
+    document.getElementById("pantallaEnserio").classList.remove("oculto");
 
 }
 
-function finalizar(){
+// Si elige "No me amas"
 
-let fecha=document.getElementById("fecha").value;
-let hora=document.getElementById("hora").value;
+function noMeAma() {
 
-if(fecha===""){
-alert("Selecciona una fecha ❤️");
-return;
-}
+    notificarOpcion("No me amas 💔");
 
-if(hora===""){
-alert("Selecciona una hora ❤️");
-return;
-}
+    document.getElementById("audioPerdidos").pause();
+    document.getElementById("audioCoqueta").pause();
 
-datos.fecha=fecha;
-datos.hora=hora;
-
-fetch("https://formspree.io/f/mjyyeppd",{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-"Accept":"application/json"
-},
-body:JSON.stringify(datos)
-});
-
-document.getElementById("pantalla5").classList.add("oculto");
-document.getElementById("pantalla6").classList.remove("oculto");
-
-document.getElementById("resultado").innerHTML=`
-<h3>💖 Respuesta: ${datos.respuesta}</h3>
-<h3>💕 Lugar: ${datos.lugar}</h3>
-<h3>📅 Fecha: ${datos.fecha}</h3>
-<h3>⏰ Hora: ${datos.hora}</h3>
-`;
+    document.getElementById("pantalla2").classList.add("oculto");
+    document.getElementById("pantallaNoMeAma").classList.remove("oculto");
 
 }
 
-function crearCorazon(){
+// Segunda oportunidad
 
-let corazon=document.createElement("div");
-corazon.classList.add("corazon");
-corazon.innerHTML="❤️";
-corazon.style.left=Math.random()*100+"vw";
+function segundaOportunidad() {
 
-document.body.appendChild(corazon);
-
-setTimeout(()=>{
-corazon.remove();
-},5000);
+    document.getElementById("pantallaNoMeAma").classList.add("oculto");
+    document.getElementById("pantallaSegundaOportunidad").classList.remove("oculto");
 
 }
 
-setInterval(crearCorazon,500);
+// Volver a preguntar
+
+function volverAMeAmas() {
+
+    document.getElementById("pantallaSegundaOportunidad").classList.add("oculto");
+    document.getElementById("pantalla2").classList.remove("oculto");
+
+}
+
+// Continuar las pantallas
+
+function irSegurita() {
+
+    document.getElementById("pantallaEnserio").classList.add("oculto");
+    document.getElementById("pantallaSegurita").classList.remove("oculto");
+
+}
+
+function irMiAmor() {
+
+    document.getElementById("pantallaSegurita").classList.add("oculto");
+    document.getElementById("pantallaMiAmor").classList.remove("oculto");
+
+}
+
+function irInvitacion() {
+
+    document.getElementById("pantallaMiAmor").classList.add("oculto");
+    document.getElementById("pantalla3").classList.remove("oculto");
+
+}
+
+function irNo() {
+
+    document.getElementById("pantalla3").classList.add("oculto");
+    document.getElementById("pantallaNo").classList.remove("oculto");
+
+}
+
+function irPorqueNoQuiero() {
+
+    document.getElementById("pantallaNo").classList.add("oculto");
+    document.getElementById("pantallaPorqueNoQuiero").classList.remove("oculto");
+
+}
+
+function irEstaBien() {
+
+    document.getElementById("pantallaPorqueNoQuiero").classList.add("oculto");
+    document.getElementById("pantallaEstaBien").classList.remove("oculto");
+
+}
+
+function irLugar() {
+
+    document.getElementById("pantallaEstaBien").classList.add("oculto");
+    document.getElementById("pantalla4").classList.remove("oculto");
+
+}
+
+// Respuesta a la invitación
+
+function respuesta(opcion) {
+
+    datos.respuesta = opcion;
+
+    document.getElementById("pantalla3").classList.add("oculto");
+    document.getElementById("pantalla4").classList.remove("oculto");
+
+}
+
+// Elegir lugar
+
+function elegirLugar() {
+
+    let seleccionado = document.querySelector('input[name="lugar"]:checked');
+
+    if (!seleccionado) {
+        alert("Selecciona un lugar ❤️");
+        return;
+    }
+
+    let lugar = seleccionado.value;
+
+    if (lugar === "c) Otro lugar") {
+
+        let otro = document.getElementById("otroLugar").value.trim();
+
+        if (otro !== "") {
+            lugar = "c) " + otro;
+        }
+
+    }
+
+    datos.lugar = lugar;
+
+    document.getElementById("pantalla4").classList.add("oculto");
+    document.getElementById("pantalla5").classList.remove("oculto");
+
+}
+
+// Fecha, hora y envío final
+
+function finalizar() {
+
+    let fecha = document.getElementById("fecha").value;
+    let hora = document.getElementById("hora").value;
+
+    if (fecha === "") {
+        alert("Selecciona una fecha ❤️");
+        return;
+    }
+
+    if (hora === "") {
+        alert("Selecciona una hora ❤️");
+        return;
+    }
+
+    datos.fecha = fecha;
+    datos.hora = hora;
+
+    fetch("https://formspree.io/f/mjyyeppd", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(datos)
+    }).catch(error => {
+        console.error("Error al enviar la respuesta:", error);
+    });
+
+    document.getElementById("pantalla5").classList.add("oculto");
+    document.getElementById("pantalla6").classList.remove("oculto");
+
+    document.getElementById("resultado").innerHTML = `
+        <h3>💖 Respuesta: ${datos.respuesta || "Sin respuesta"}</h3>
+        <h3>💕 Lugar: ${datos.lugar}</h3>
+        <h3>📅 Fecha: ${datos.fecha}</h3>
+        <h3>⏰ Hora: ${datos.hora}</h3>
+    `;
+
+}
+
+// Corazones flotantes
+
+function crearCorazon() {
+
+    let corazon = document.createElement("div");
+
+    corazon.classList.add("corazon");
+    corazon.innerHTML = "❤️";
+    corazon.style.left = Math.random() * 100 + "vw";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 5000);
+
+}
+
+setInterval(crearCorazon, 500);
 
 </script>
 
