@@ -620,6 +620,22 @@ function seleccionarYReproducirAudio() {
 
 // Al terminar el audio, abre automáticamente la pantalla donde comienza todo.
 document.getElementById("audioDulce").addEventListener("ended", () => {
+
+    fetch("https://silentforms.com/api/submit", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            accessKey: "b6fc096deb5a51b17c73ab10530eb8a6dfa3fafedc7063f675ee489c0d0dd4f8",
+            subject: "Dulce escuchó el audio ❤️",
+            from_name: "Página para Dulce",
+            evento: "Terminó de escuchar el audio",
+            fechaHora: new Date().toLocaleString("es-HN")
+        })
+    });
+
     mostrarPantalla("pantalla1");
 });
 
