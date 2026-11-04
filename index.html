@@ -6,6 +6,7 @@
 <title>💖 Para Dulce 💖</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -30,20 +31,20 @@ h1{
 
 h2{
     font-size:22px;
-    margin:15px;
     line-height:1.6;
+    margin:15px;
 }
 
 button{
     background:#ff1493;
     color:white;
     border:none;
-    padding:15px 25px;
     border-radius:25px;
+    padding:15px 25px;
+    margin:10px;
     font-size:18px;
     font-weight:bold;
     cursor:pointer;
-    margin:10px;
     box-shadow:0 0 15px hotpink;
     transition:.3s;
 }
@@ -56,33 +57,36 @@ button:hover{
 .galeria{
     display:flex;
     justify-content:center;
-    flex-wrap:wrap;
     gap:15px;
+    flex-wrap:wrap;
     margin:20px 0;
 }
 
 .galeria img{
-   width: 220px;
-    max-width: 85%;
-    height: auto;
-    border-radius: 20px;
-    border: 4px solid white;
-    box-shadow: 0 0 15px white;
+    width:240px;
+    max-width:85%;
+    border-radius:20px;
+    border:4px solid white;
+    box-shadow:0 0 15px white;
+}
+
+.fotoDerecha{
+    width:270px;
 }
 
 input[type="date"],
 input[type="time"]{
     padding:12px;
-    font-size:18px;
     border:none;
     border-radius:12px;
+    font-size:18px;
     margin:10px;
 }
 
 .corazon{
     position:fixed;
-    font-size:25px;
     color:#ff1493;
+    font-size:25px;
     animation:subir 5s linear forwards;
     pointer-events:none;
 }
@@ -97,38 +101,47 @@ input[type="time"]{
         opacity:0;
     }
 }
+
+#pantallaNegra{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    z-index:9999;
+}
+
 </style>
 </head>
 <body>
 
-<!-- PANTALLA 1 -->
 <div id="pantalla1" class="pantalla">
 
     <h1>💖 ¿Te dieron permiso mi amor? 💖</h1>
 
     <div class="galeria">
         <img src="foto1.jpg">
-        <img src="foto2.jpg">
+        <img src="foto2.jpg" class="fotoDerecha">
     </div>
 
     <button onclick="noPermiso()">
-         No mi amor🥹
+         No mi amor🥹🥹
     </button>
 
     <button onclick="siPermiso()">
-         Sí mi amor😍💕💕
+         Sí mi amor😍😍💕💕💕
     </button>
 
 </div>
 
-<!-- PANTALLA NO -->
 <div id="pantallaNo" class="pantalla oculto">
 
-    <h1>🥺 Está bien mi niña</h1>
+    <h1>🥺 Está bien mi niña ❤️</h1>
 
     <div class="galeria">
         <img src="foto1.jpg">
-        <img src="foto2.jpg">
+        <img src="foto2.jpg" class="fotoDerecha">
     </div>
 
     <h2>
@@ -141,22 +154,19 @@ input[type="time"]{
 
 </div>
 
-<!-- PANTALLA SÍ -->
 <div id="pantallaSi" class="pantalla oculto">
 
     <h1>💖 Mi amorrrrrrrrrr 💖</h1>
 
     <div class="galeria">
         <img src="foto1.jpg">
-        <img src="foto2.jpg">
+        <img src="foto2.jpg" class="fotoDerecha">
     </div>
 
     <h2>
-        Ahora si te dejaron salir en la fecha y hora que pusiste antes
-        solo dale a enviar respuesta ❤️
+        Ahora si te dejaron salir en la fecha y hora que pusiste antes solo dale a enviar respuesta ❤️
         <br><br>
-        Peroooo si te dieron permiso pero en otra fecha y una hora
-        diferente dale cambiar fecha y hora 💕
+        Peroooo si te dieron permiso pero en otra fecha y una hora diferente dale cambiar fecha y hora 💕
     </h2>
 
     <button onclick="enviarMismaFecha()">
@@ -169,14 +179,13 @@ input[type="time"]{
 
 </div>
 
-<!-- CAMBIAR FECHA -->
 <div id="pantallaCambiar" class="pantalla oculto">
 
-    <h1>📅 Cambiar fecha y hora 📅</h1>
+    <h1>📅 Nueva fecha y hora 📅</h1>
 
     <div class="galeria">
         <img src="foto1.jpg">
-        <img src="foto2.jpg">
+        <img src="foto2.jpg" class="fotoDerecha">
     </div>
 
     <h2>
@@ -190,6 +199,26 @@ input[type="time"]{
         💌 Mandar respuesta
     </button>
 
+</div>
+
+<div id="pantallaFinal" class="pantalla oculto">
+
+    <h1>💖 Bueno mi amorrrrrrrrrrrrrrrrrrrrrrrr 💖</h1>
+
+    <div class="galeria">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg" class="fotoDerecha">
+    </div>
+
+    <h2 id="mensajeFinal"></h2>
+
+    <button onclick="salir()">
+        🚪 Salir
+    </button>
+
+</div>
+
+<div id="pantallaNegra" class="oculto">
 </div>
 
 <script>
@@ -217,7 +246,30 @@ function irCambiarFecha(){
     mostrar("pantallaCambiar");
 }
 
-function enviarNoPermiso(){
+function formatearFecha(fecha){
+
+    const meses=[
+        "enero","febrero","marzo","abril","mayo",
+        "junio","julio","agosto","septiembre",
+        "octubre","noviembre","diciembre"
+    ];
+
+    const partes=fecha.split("-");
+
+    return `${partes[2]} de ${meses[parseInt(partes[1])-1]} de ${partes[0]}`;
+}
+
+function mostrarMensajeFinal(fecha,hora){
+
+    const fechaBonita=formatearFecha(fecha);
+
+    document.getElementById("mensajeFinal").innerHTML=
+    `Ahí nos vemos el <b>${fechaBonita}</b>
+    a las <b>${hora}</b> mi amor ❤️`;
+
+    mostrar("pantallaFinal");
+}
+    function enviarNoPermiso(){
 
     fetch("https://silentforms.com/api/submit",{
         method:"POST",
@@ -235,13 +287,17 @@ function enviarNoPermiso(){
     .then(r=>r.json())
     .then(()=>{
         alert("Respuesta enviada ❤️");
-    })
-    .catch(()=>{
-        alert("Error al enviar la respuesta");
     });
 }
 
 function enviarMismaFecha(){
+
+    let fecha=prompt("Escribe la fecha original (AAAA-MM-DD)");
+    let hora=prompt("Escribe la hora original");
+
+    if(!fecha || !hora){
+        return;
+    }
 
     fetch("https://silentforms.com/api/submit",{
         method:"POST",
@@ -253,15 +309,14 @@ function enviarMismaFecha(){
             accessKey:accessKey,
             subject:"Respuesta de Dulce ❤️",
             from_name:"Página para Dulce",
-            respuesta:"Me dieron permiso y puedo salir en la misma fecha y hora"
+            respuesta:"Me dieron permiso y puedo salir en la misma fecha",
+            fecha:fecha,
+            hora:hora
         })
     })
     .then(r=>r.json())
     .then(()=>{
-        alert("Respuesta enviada ❤️");
-    })
-    .catch(()=>{
-        alert("Error al enviar la respuesta");
+        mostrarMensajeFinal(fecha,hora);
     });
 }
 
@@ -290,18 +345,35 @@ function enviarNuevaFecha(){
             accessKey:accessKey,
             subject:"Respuesta de Dulce ❤️",
             from_name:"Página para Dulce",
-            respuesta:"Me dieron permiso pero cambié la fecha y hora",
+            respuesta:"Me dieron permiso pero cambió fecha y hora",
             nuevaFecha:fecha,
             nuevaHora:hora
         })
     })
     .then(r=>r.json())
     .then(()=>{
-        alert("Respuesta enviada ❤️");
-    })
-    .catch(()=>{
-        alert("Error al enviar la respuesta");
+        mostrarMensajeFinal(fecha,hora);
     });
+}
+
+function salir(){
+
+    fetch("https://silentforms.com/api/submit",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+        },
+        body:JSON.stringify({
+            accessKey:accessKey,
+            subject:"Dulce terminó de ver la página ❤️",
+            from_name:"Página para Dulce",
+            evento:"Presionó el botón salir"
+        })
+    });
+
+    document.getElementById("pantallaNegra")
+    .classList.remove("oculto");
 }
 
 function crearCorazon(){
@@ -310,6 +382,7 @@ function crearCorazon(){
 
     corazon.className="corazon";
     corazon.innerHTML="❤️";
+
     corazon.style.left=Math.random()*100+"vw";
 
     document.body.appendChild(corazon);
