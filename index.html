@@ -225,17 +225,17 @@ input[type="text"] {
 <!-- PANTALLA INICIAL: MENSAJE Y BOTÓN PARA ESCUCHAR EL AUDIO -->
 <div id="pantallaAudioDulce" class="pantalla">
     <h1>💗 Aquí te dejo un audio mío, mi amor 💗</h1>
-    <h3>👇 Escucha mi audio mi chiquinichan 👇</h3>
+    <h3>👇 Escucha mi audio mi niña 👇</h3>
 
     <button id="botonAudioDulce" type="button" onclick="seleccionarYReproducirAudio()">
-        Escucha mi audio mi chiquinichan
+        Escucha mi audio mi niña
     </button>
  <br><br>
 
     <p style="max-width:700px; margin:25px auto; text-align:center; font-size:18px; line-height:1.7; background:rgba(255,255,255,0.15); padding:15px; border-radius:15px; color:white;">
-         Antes de escuchar el audio quiero que sepas que este link solo lo podrás abrir una vez y después se cerrará completamente. 💖
+         Antes de escuchar el audio quiero que sepas que este link solo lo podrás ver así de esta forma ya que después lo que te va aparecer en el mismo link es para que confirmes la salida. 💖
         <br><br>
-        Este audio solo es para que vos lo veas una vez, asi que espero que te guste esta forma de invitarte a salir mi amor. ❤️
+        Este audio solo es para que vos lo escuches una vez, así que espero que te guste mucho esta forma de invitarte a salir mi amor. ❤️
     </p>
     
     <!-- El audio se carga directamente desde la misma carpeta que index.html -->
@@ -523,7 +523,7 @@ input[type="text"] {
 
 <!-- PANTALLA DE BROMA ANTES DE LA SEGUNDA OPORTUNIDAD -->
 <div id="pantallaBroma" class="pantalla oculto">
-    <h1>💕 Es broma mi chiquinichan 💕</h1>
+    <h1>💕 Es broma mi niña 💕</h1>
     <button onclick="mostrarPantalla('pantallaSegundaOportunidad')">
         ❤️ Mira como yo te amo mucho ❤️
     </button>
@@ -560,7 +560,7 @@ input[type="text"] {
     </h2>
 
     <h2>
-        Espero que te haya gustado esta forma de invitarte a salir amor
+        Ahora mi niña hermosa vos pedí permiso para salir en la fecha que pusiste y cuando ya tengas el permiso volvés a abrir este link en el cual te van a salir dos opciones las cuales son si te dieron permiso o no. ❤️
     </h2>
 
     <button id="botonEnviar" onclick="enviarRespuesta()">
@@ -618,7 +618,7 @@ function seleccionarYReproducirAudio() {
 
     audio.play().catch(() => {
         boton.disabled = false;
-        boton.textContent = "Escucha mi audio mi chiquinichan";
+        boton.textContent = "Escucha mi audio mi niña";
         alert("No se pudo reproducir el audio. Asegurate de que audiodulce.mp3 esté en la misma carpeta que este archivo HTML.");
     });
 }
